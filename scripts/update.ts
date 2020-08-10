@@ -1,7 +1,8 @@
-import { exit } from 'process';
 import yargs from 'yargs';
 import colors from 'colors';
 import shell from 'shelljs';
+
+const configsMap = require('../configs.map.json');
 
 const configFilenames = {
   eslint: '.eslintrc',
@@ -10,35 +11,39 @@ const configFilenames = {
   tsconfig: 'tsconfig.json'
 };
 
-const configsMap = {
-  eslint: {
-    'node-api': 'api.eslintrrc'
-  },
-  prettier: {
-    $root: 'default.prettierrc',
-    'node-api': 'default.prettierrc'
-  },
-  gitignore: {
-    $root: 'node.gitignore',
-    'node-api': 'api.gitignore'
-  },
-  tsconfig: {
-    $root: 'tsconfig.api.json',
-    'node-api': 'tsconfig.api.json'
+const updateAll = (config: string) => {
+  for (let template of Object.keys(configsMap[config])) {
+    const configFile = configsMap[config][template];
+
+    const pathToConfigFile = `./configs/${config}/${configFile}`;
+    const pathToReplace = `./templates/${template}/${configFilenames[config]}`.replace('//', '/');
+    const result = shell.cp('-f', pathToConfigFile, pathToReplace);
+
+    if (result.code) {
+      console.log(colors.red(`Failed to copy ${pathToConfigFile} to ${pathToReplace}.`));
+    } else {
+      console.log(colors.green(`Copied ${pathToConfigFile} to ${pathToReplace}.`));
+    }
   }
 };
 
-var argv = yargs.option('config', { type: 'string', description: 'The name of the configuration to update.' }).alias('c', 'config').help().argv;
+var argv = yargs
+  .option('config', { alias: 'c', type: 'string', description: 'The name of the configuration to update.' })
+  .alias('c', 'config')
+  .check((argv) => {
+    if (!argv.config) {
+      throw colors.red('Config (--config) is a required flag.');
+    }
 
-const config: string = argv.config;
+    const config = argv.config;
 
-if (!configsMap[config]) {
-  console.error(colors.red(`The provided config (${config}) could not be found.`));
-  exit(1);
-}
+    if (!configsMap[config]) {
+      throw colors.red(`The provided config (${config}) could not be found.`);
+    }
 
-for (const template of Object.keys(configsMap[config])) {
-  const pathToReplace = `./templates/${template}/${configFilenames[config]}`;
-  const pathToConfigFile = `./configs/${config}/${configsMap[config][template]}`;
-  shell.cp('-f', pathToConfigFile, pathToReplace);
-}
+    return true;
+  }).argv;
+
+const config = argv.config;
+
+updateAll(config);

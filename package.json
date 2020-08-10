@@ -6,7 +6,8 @@
   "author": "= <ryancat.dev@gmail.com>",
   "license": "MIT",
   "scripts": {
-    "update": "ts-node scripts/update.ts"
+    "update": "ts-node scripts/update.ts",
+    "use": "ts-node scripts/use.ts"
   },
   "dependencies": {
     "@types/colors": "^1.2.1",

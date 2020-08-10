@@ -1,0 +1,17 @@
+{
+  "eslint": {
+    "node-api": "api.eslintrc"
+  },
+  "prettier": {
+    ".": "default.prettierrc",
+    "node-api": "default.prettierrc"
+  },
+  "gitignore": {
+    ".": "node.gitignore",
+    "node-api": "api.gitignore"
+  },
+  "tsconfig": {
+    ".": "tsconfig.api.json",
+    "node-api": "tsconfig.api.json"
+  }
+}
