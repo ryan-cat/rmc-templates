@@ -6,10 +6,17 @@
   "author": "= <ryancat.dev@gmail.com>",
   "license": "MIT",
   "scripts": {
-    
+    "update": "ts-node scripts/update.ts"
   },
   "dependencies": {
+    "@types/colors": "^1.2.1",
+    "@types/node": "^14.0.27",
+    "@types/shelljs": "^0.8.8",
+    "@types/yargs": "^15.0.5",
+    "colors": "^1.4.0",
+    "shelljs": "^0.8.4",
     "ts-node": "^8.10.2",
-    "typescript": "^3.9.7"
+    "typescript": "^3.9.7",
+    "yargs": "^15.4.1"
   }
 }
