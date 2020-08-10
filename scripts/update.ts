@@ -16,7 +16,9 @@ const updateAll = (config: string) => {
     const configFile = configsMap[config][template];
 
     const pathToConfigFile = `./configs/${config}/${configFile}`;
-    const pathToReplace = `./templates/${template}/${configFilenames[config]}`.replace('//', '/');
+
+    const pathToReplaceStart = template === '.' ? '' : './templates/';
+    const pathToReplace = `${pathToReplaceStart}${template}/${configFilenames[config]}`.replace('//', '/');
     const result = shell.cp('-f', pathToConfigFile, pathToReplace);
 
     if (result.code) {
