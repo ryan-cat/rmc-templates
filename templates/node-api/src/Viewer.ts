@@ -1,5 +1,5 @@
 import { auth } from 'firebase-admin';
-import { AuthenticationError } from './utils/errors';
+import { AuthenticationError } from 'rmc-backend-tools';
 
 export class Viewer {
   private _authId: string;

@@ -3,20 +3,18 @@ import { buildSchema } from 'type-graphql';
 import { ApolloServer } from 'apollo-server';
 import { createConnection, useContainer } from 'typeorm';
 import Container from 'typedi';
-import dbConfig from './configs/databaseConfig';
-import firebaseConfig from './configs/firebaseConfig';
 import firebase from 'firebase-admin';
-import { formatError } from './utils/errors';
+import { formatError, databaseConfig, firebaseConfig } from 'rmc-backend-tools';
 import { authentication } from './utils/middleware';
 
 useContainer(Container);
 
 const start = async () => {
-  await createConnection(dbConfig);
+  // await createConnection(databaseConfig());
 
-  firebase.initializeApp({
-    credential: firebase.credential.cert(firebaseConfig)
-  });
+  // firebase.initializeApp({
+  //   credential: firebase.credential.cert(firebaseConfig())
+  // });
 
   const schema = await buildSchema({
     resolvers: [__dirname + '/**/*Resolvers.{ts,js}'],
