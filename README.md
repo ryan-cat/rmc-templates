@@ -1,1 +1,1 @@
-# boilerplates
+# rmc-templates
