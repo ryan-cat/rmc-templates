@@ -21,17 +21,21 @@ var argv = yargs
 
     return true;
   })
+  .option('name', { alias: 'n', type: 'string', description: 'The name to rename the template folder to.' })
+  .alias('n', 'name')
   .help().argv;
 
 const template = argv.template;
 const outDir = argv.outDir;
+const name = argv.name;
 
-const templatePath = `./templates/${template}`;
+const templatePath = `./templates/${template}/`;
+const outputPath = `${outDir}/${name || template}`;
 
-const result = shell.exec(`rsync -avr --exclude=node_modules ${templatePath} ${outDir}`);
+const result = shell.exec(`rsync -avr --exclude=node_modules ${templatePath} ${outputPath}`);
 
 if (result.code) {
-  console.log(colors.red(`Failed to copy ${template} to ${outDir}.`));
+  console.log(colors.red(`Failed to copy ${template} to ${outputPath}.`));
 } else {
-  console.log(colors.green(`Copied ${template} to ${outDir}.`));
+  console.log(colors.green(`Copied ${template} to ${outputPath}.`));
 }
