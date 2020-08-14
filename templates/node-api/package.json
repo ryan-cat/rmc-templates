@@ -4,7 +4,7 @@
   "license": "MIT",
   "scripts": {
     "start": "node index.js",
-    "dev": "ts-node-dev -r dotenv/config --respawn --transpileOnly src/index.ts",
+    "dev": "ts-node-dev -r dotenv/config --respawn --transpile-only src/index.ts",
     "build": "tsc && cp package.json build/",
     "typeorm": "ts-node ./node_modules/typeorm/cli -f ./src/configs/databaseConfig.ts",
     "test": "jest",
@@ -41,7 +41,7 @@
     "jest": "^26.4.0",
     "prettier": "^2.0.5",
     "ts-jest": "^26.2.0",
-    "ts-node-dev": "^1.0.0-pre.44",
+    "ts-node-dev": "^1.0.0-pre.57",
     "typescript": "^3.9.2"
   }
 }
