@@ -1,0 +1,14 @@
+{
+  "compilerOptions": {
+    "target": "ES2018",
+    "esModuleInterop": true,
+    "module": "commonjs",
+    "jsx": "react",
+    "baseUrl": "src",
+    "paths": {
+      "testUtils": [
+        "./utils/testUtils"
+      ]
+    }
+  }
+}
