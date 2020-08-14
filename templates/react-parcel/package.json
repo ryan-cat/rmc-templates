@@ -18,10 +18,16 @@
     "@material-ui/core": "^4.11.0",
     "@material-ui/icons": "^4.9.1",
     "@material-ui/lab": "^4.0.0-alpha.56",
+    "apollo-link-context": "^1.0.20",
+    "firebase": "^7.18.0",
+    "graphql": "^15.3.0",
     "react": "^16.13.1",
     "react-app-polyfill": "^1.0.6",
     "react-dom": "^16.13.1",
-    "react-router-dom": "^5.2.0"
+    "react-redux": "^7.2.1",
+    "react-router-dom": "^5.2.0",
+    "redux": "^4.0.5",
+    "redux-thunk": "^2.3.0"
   },
   "devDependencies": {
     "@babel/core": "^7.9.0",
@@ -53,9 +59,11 @@
     "ts-jest": "^26.2.0",
     "typescript": "^3.8.3"
   },
-  "browerslist": [
-    "last 1 Chrome versions",
-    "last 1 Edge versions",
-    "IE 11"
+  "browserslist": [
+    "last 3 and_chr versions",
+    "last 3 chrome versions",
+    "last 3 opera versions",
+    "last 3 ios_saf versions",
+    "last 3 safari versions"
   ]
 }
